@@ -17,6 +17,7 @@ describe('listAccountTransactions', () => {
       {
         where: {
           accountId: 'acct_456',
+          ownerId: 'user_123',
         },
         orderBy: {
           createdAt: 'desc',
@@ -42,6 +43,7 @@ describe('listAccountTransactions', () => {
       {
         where: {
           accountId: 'acct_456',
+          ownerId: 'user_123',
         },
         orderBy: {
           createdAt: 'desc',

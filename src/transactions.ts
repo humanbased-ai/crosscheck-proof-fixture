@@ -39,6 +39,7 @@ export async function listAccountTransactions(
   return store.findMany({
     where: {
       accountId,
+      ownerId: ctx.user.id,
     },
     orderBy: {
       createdAt: 'desc',
