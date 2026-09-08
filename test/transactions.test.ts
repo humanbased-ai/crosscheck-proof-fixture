@@ -17,9 +17,11 @@ describe('listAccountTransactions', () => {
       {
         where: {
           accountId: 'acct_456',
+          ownerId: 'user_123',
         },
         orderBy: {
           createdAt: 'desc',
+          id: 'asc',
         },
         skip: 0,
         take: 25,

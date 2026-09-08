@@ -35,10 +35,10 @@ export async function listAccountTransactions(
   page = 1,
   pageSize = 25,
 ): Promise<Transaction[]> {
-  if (!Number.isFinite(page) || !Number.isInteger(page)) page = 1
-  if (!Number.isFinite(pageSize) || !Number.isInteger(pageSize)) pageSize = 25
+  if (!Number.isSafeInteger(page) || page < 1) page = 1
+  if (!Number.isSafeInteger(pageSize) || pageSize < 1) pageSize = 25
 
-  const normalizedPage = Math.max(1, page)
+  const normalizedPage = Math.max(1, Math.min(page, 1000000))
   const normalizedPageSize = Math.min(100, Math.max(1, pageSize))
 
   return store.findMany({
