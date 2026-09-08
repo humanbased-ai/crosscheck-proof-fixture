@@ -38,7 +38,7 @@ export async function listAccountTransactions(
   if (!Number.isSafeInteger(page) || page < 1) page = 1
   if (!Number.isSafeInteger(pageSize) || pageSize < 1) pageSize = 25
 
-  const normalizedPage = Math.max(1, Math.min(page, 1000000))
+  const normalizedPage = Math.max(1, Math.min(page, 100))
   const normalizedPageSize = Math.min(100, Math.max(1, pageSize))
 
   return store.findMany({
