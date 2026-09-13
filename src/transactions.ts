@@ -21,7 +21,10 @@ export interface TransactionStore {
     }
     orderBy: {
       createdAt: 'asc' | 'desc'
+      id: 'asc' | 'desc'
     }
+    skip: number
+    take: number
   }): Promise<Transaction[]>
 }
 
@@ -29,7 +32,15 @@ export async function listAccountTransactions(
   store: TransactionStore,
   ctx: UserContext,
   accountId: string,
+  page = 1,
+  pageSize = 25,
 ): Promise<Transaction[]> {
+  if (!Number.isSafeInteger(page) || page < 1) page = 1
+  if (!Number.isSafeInteger(pageSize) || pageSize < 1) pageSize = 25
+
+  const normalizedPage = Math.max(1, Math.min(page, 100))
+  const normalizedPageSize = Math.min(100, Math.max(1, pageSize))
+
   return store.findMany({
     where: {
       accountId,
@@ -37,6 +48,9 @@ export async function listAccountTransactions(
     },
     orderBy: {
       createdAt: 'desc',
+      id: 'asc',
     },
+    skip: (normalizedPage - 1) * normalizedPageSize,
+    take: normalizedPageSize,
   })
 }
