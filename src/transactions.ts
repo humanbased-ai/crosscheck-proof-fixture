@@ -17,6 +17,7 @@ export interface TransactionStore {
   findMany(query: {
     where: {
       accountId: string
+      ownerId: string
     }
     orderBy: {
       createdAt: 'asc' | 'desc'
