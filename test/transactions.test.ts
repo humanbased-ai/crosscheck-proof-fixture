@@ -21,6 +21,7 @@ describe('listAccountTransactions', () => {
         },
         orderBy: {
           createdAt: 'desc',
+          id: 'asc',
         },
         skip: 0,
         take: 25,
@@ -47,6 +48,7 @@ describe('listAccountTransactions', () => {
         },
         orderBy: {
           createdAt: 'desc',
+          id: 'asc',
         },
         skip: 20,
         take: 10,
